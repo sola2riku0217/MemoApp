@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View, Text, StyleSheet, TouchableOpacity,
+} from 'react-native';
 
 export default function Appbar() {
   return (
@@ -7,7 +9,9 @@ export default function Appbar() {
       {/* App Bar */}
       <View style={styles.appbarinner}>
         <Text style={styles.appbartitle}>Memo App</Text>
+        {/* <TouchableOpacity> */}
         <Text style={styles.appbarright}>ログアウト</Text>
+        {/* </TouchableOpacity> */}
       </View>
     </View>
   );
