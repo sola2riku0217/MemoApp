@@ -7,7 +7,8 @@ import Appbar from '../components/appbar';
 import CircleButton from '../components/CircleButton';
 import KeyboardSafeView from '../components/KeyboardSafeView';
 
-export default function MemoCreateScreen() {
+export default function MemoCreateScreen(props) {
+  const { navigation } = props;
   return (
     <KeyboardSafeView style={styles.container}>
       <View style={styles.container}>
@@ -15,7 +16,10 @@ export default function MemoCreateScreen() {
         <View style={styles.inputContainer}>
           <TextInput value="hi" multiline style={styles.input} />
         </View>
-        <CircleButton name="check" />
+        <CircleButton
+          name="check"
+          onPress={() => { navigation.goBack(); }}
+        />
       </View>
     </KeyboardSafeView>
   );
