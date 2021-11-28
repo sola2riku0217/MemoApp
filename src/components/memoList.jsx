@@ -15,12 +15,12 @@ export default function MemoList(props) {
   const { memos } = props;
   const navigation = useNavigation();
 
-  function deleteMemo (id) {
+  function deleteMemo(id) {
     const { currentUser } = firebase.auth();
     if (currentUser) {
       const db = firebase.firestore();
       const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
-      Alert.alert('メモを削除します','よろしいですか？', [
+      Alert.alert('メモを削除します', 'よろしいですか？', [
         {
           text: 'キャンセル',
           onPress: () => {},
@@ -51,7 +51,7 @@ export default function MemoList(props) {
         </View>
         <TouchableOpacity
           style={styles.memoDelete}
-          onPress={() => { deleteMemo(item.id) }}
+          onPress={() => { deleteMemo(item.id); }}
         >
           <Icon name="delete" size={24} color="#B0B0B0" />
         </TouchableOpacity>

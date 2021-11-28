@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  View, TextInput, StyleSheet,Alert,
+  View, TextInput, StyleSheet, Alert,
 } from 'react-native';
 import { shape, string } from 'prop-types';
 import firebase from 'firebase';
@@ -13,9 +13,9 @@ import { translateErrors } from '../utils';
 export default function MemoEditScreen(props) {
   const { navigation, route } = props;
   const { id, bodyText } = route.params;
-  const [ body, setBody ] = useState(bodyText);
+  const [body, setBody] = useState(bodyText);
 
-  function handlePress () {
+  function handlePress() {
     const { currentUser } = firebase.auth();
     const db = firebase.firestore();
     const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
@@ -36,10 +36,11 @@ export default function MemoEditScreen(props) {
     <KeyboardSafeView style={styles.container} behavior="height">
       <View style={styles.container}>
         <View style={styles.inputContainer}>
-          <TextInput value={body}
-          multiline
-          style={styles.input}
-          onChangeText={(text) => { setBody(text) }}
+          <TextInput
+            value={body}
+            multiline
+            style={styles.input}
+            onChangeText={(text) => { setBody(text); }}
           />
         </View>
         <CircleButton

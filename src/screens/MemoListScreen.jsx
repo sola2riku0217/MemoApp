@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Alert, Text } from 'react-native';
+import {
+  View, StyleSheet, Alert, Text,
+} from 'react-native';
 import firebase from 'firebase';
 
 // import Appbar from '../components/appbar';
@@ -11,8 +13,8 @@ import Loading from '../components/Loading';
 
 export default function MemoListScreen(props) {
   const { navigation } = props;
-  const [ memos, setMemos ] = useState([]);
-  const [ isLoading, setLoading ] = useState(false);
+  const [memos, setMemos] = useState([]);
+  const [isLoading, setLoading] = useState(false);
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => <LogOutButton />,
@@ -29,7 +31,6 @@ export default function MemoListScreen(props) {
       unsubcribe = ref.onSnapshot((snapshot) => {
         const userMemos = [];
         snapshot.forEach((doc) => {
-          console.log(doc.id, doc.data());
           const data = doc.data();
           userMemos.push({
             id: doc.id,
@@ -39,8 +40,7 @@ export default function MemoListScreen(props) {
         });
         setMemos(userMemos);
         setLoading(false);
-      }, (error) => {
-        console.log(error);
+      }, () => {
         setLoading(false);
         Alert.alert('データの読み込みに失敗しました');
       });
@@ -51,17 +51,17 @@ export default function MemoListScreen(props) {
   if (memos.length === 0) {
     return (
       <View style={emptyStyles.container}>
-        <Loading isLoading={isLoading}/>
+        <Loading isLoading={isLoading} />
         <View style={emptyStyles.inner}>
           <Text style={emptyStyles.title}>最初のメモを作成しよう！</Text>
           <Button
             style={emptyStyles.button}
-            label='作成する'
+            label="作成する"
             onPress={() => { navigation.navigate('MemoCreate'); }}
-          ></Button>
+          />
         </View>
       </View>
-    )
+    );
   }
   return (
     <View style={styles.container}>
